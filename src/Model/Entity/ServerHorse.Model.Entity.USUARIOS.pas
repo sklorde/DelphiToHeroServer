@@ -9,11 +9,9 @@ type
   [Tabela('Usuarios')]
   TUsuarios = class
   private
-    FNAME :String;
-    FPHONE :String;
-    FOCCUPATION :String;
-    FGUUID: String;
-    FBALANCE: Currency;
+    FID: String;
+    FNOME :String;
+    FTELEFONE :String;
     FBIRTHDATE: TDateTime;
     FLASTTRANSACTION: TDateTime;
     FCPF: String;
@@ -22,10 +20,7 @@ type
     function GetNAME :String;
     procedure SetPHONE (const Value :String);
     function GetPHONE :String;
-    procedure SetOCCUPATION (const Value :String);
-    function GetOCCUPATION :String;
     procedure SetGUUID(const Value: String);
-    procedure SetBALANCE(const Value: Currency);
     procedure SetBIRTHDATE(const Value: TDateTime);
     procedure SetLASTTRANSACTION(const Value: TDateTime);
     procedure SetCPF(const Value: String);
@@ -40,10 +35,6 @@ type
     property NAME :String read GetNAME write SetNAME;
     [Campo('PHONE')]
     property PHONE :String read GetPHONE write SetPHONE;
-    [Campo('OCCUPATION')]
-    property OCCUPATION :String read GetOCCUPATION write SetOCCUPATION;
-    [Campo('BALANCE')]
-    property BALANCE : Currency read FBALANCE write SetBALANCE;
     [Campo('BIRTHDATE')]
     property BIRTHDATE : TDateTime read FBIRTHDATE write SetBIRTHDATE;
     [Campo('LASTTRANSACTION')]
@@ -72,17 +63,12 @@ end;
 
 procedure TUsuarios.SetGUUID(const Value: String);
 begin
-  FGUUID := Value;
+  FID := Value;
 end;
 
 procedure TUsuarios.SetLASTTRANSACTION(const Value: TDateTime);
 begin
   FLASTTRANSACTION := Value;
-end;
-
-procedure TUsuarios.SetBALANCE(const Value: Currency);
-begin
-  FBALANCE := Value;
 end;
 
 procedure TUsuarios.SetBIRTHDATE(const Value: TDateTime);
@@ -102,37 +88,27 @@ end;
 
 procedure TUsuarios.SetNAME (const Value :String);
 begin
-  FNAME := Value;
+  FNOME := Value;
 end;
 
 function TUsuarios.GetGUUID: String;
 begin
-  Result := FGUUID;
+  Result := FID;
 end;
 
 function TUsuarios.GetNAME :String;
 begin
-  Result := FNAME;
+  Result := FNOME;
 end;
 
 procedure TUsuarios.SetPHONE (const Value :String);
 begin
-  FPHONE := Value;
+  FTELEFONE := Value;
 end;
 
 function TUsuarios.GetPHONE :String;
 begin
-  Result := FPHONE;
-end;
-
-procedure TUsuarios.SetOCCUPATION (const Value :String);
-begin
-  FOCCUPATION := Value;
-end;
-
-function TUsuarios.GetOCCUPATION :String;
-begin
-  Result := FOCCUPATION;
+  Result := FTELEFONE;
 end;
 
 end.

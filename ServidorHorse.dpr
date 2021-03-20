@@ -15,7 +15,8 @@ uses
   ServerHorse.Controller.Generic in 'src\Controller\ServerHorse.Controller.Generic.pas',
   ServerHorse.Routers.Usuarios in 'src\Routers\ServerHorse.Routers.Usuarios.pas',
   System.Classes,
-  ServerHorse.Utils in 'src\Utils\ServerHorse.Utils.pas';
+  ServerHorse.Utils in 'src\Utils\ServerHorse.Utils.pas',
+  ServerHorse.Model.Entity.ENDERECO in 'src\Model\Entity\ServerHorse.Model.Entity.ENDERECO.pas';
 
 begin
   ServerHorse.Routers.Usuarios.Registry;
