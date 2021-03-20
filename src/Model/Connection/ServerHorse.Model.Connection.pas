@@ -17,18 +17,13 @@ uses
   Data.DB,
   FireDAC.Comp.Client,
   Firedac.DApt,
-  Firedac.Phys.FB,
-  Firedac.Phys.SQLite,
-  Firedac.Phys.SQLiteDef,
-  Firedac.Phys.FBDef,
-  Firedac.Phys.MySQLDef,
-  Firedac.Phys.MySQL,
+  FireDAC.Phys.PG,
   FireDAC.VCLUI.Wait,
   FireDAC.Comp.UI;
 
 
 var
-  FDriver : TFDPhysMYSQLDriverLink;
+  FDriver : TFDPhysPGDriverLink;
   FConnList : TObjectList<TFDConnection>;
 
 function Connected : Integer;
@@ -45,13 +40,14 @@ begin
 
     FConnList.Add(TFDConnection.Create(nil));
     IndexConn := Pred(FConnList.Count);
-    FConnList.Items[IndexConn].Params.DriverID := 'SQLite';
-    FConnList.Items[IndexConn].Params.Database := '..\..\database\SimpleProject.db3';
-    //FConnList.Items[IndexConn].Params.UserName := 'user';
-    //1FConnList.Items[IndexConn].Params.Password := 'password';
-    //FConnList.Items[IndexConn].Params.Add('Port=3306');
-    //FConnList.Items[IndexConn].Params.Add('CharacterSet=utf8');
-    //FConnList.Items[IndexConn].Params.Add('Server=xxx');
+    FConnList.Items[IndexConn].Params.UserName := 'postgres';
+    FConnList.Items[IndexConn].Params.Password := 'info$g10112';
+    FConnList.Items[IndexConn].Params.Database := 'delphitohero';
+    FConnList.Items[IndexConn].Params.DriverID := 'PG';
+    FConnList.Items[IndexConn].Params.Add('Port=5432');
+    FConnList.Items[IndexConn].Params.Add('CharacterSet=utf8');
+    FConnList.Items[IndexConn].Params.Add('Server=localhost');
+
     FConnList.Items[IndexConn].Params.Add('LockingMode=Normal');
     FConnList.Items[IndexConn].Connected;
   Result := IndexConn;

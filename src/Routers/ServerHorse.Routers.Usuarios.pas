@@ -27,7 +27,7 @@ begin
   .Use(Jhonson)
   .Use(CORS)
 
-  .Get('/users',
+  .Get('/usuario',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       iController : iControllerEntity<TUsuarios>;
@@ -42,7 +42,7 @@ begin
       Res.Send<TJsonArray>(iController.This.DataSetAsJsonArray);
     end)
 
-  .Get('/users/:ID',
+  .Get('/usuario/:id',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       iController : iControllerEntity<TUsuarios>;
@@ -51,23 +51,23 @@ begin
       iController.This
         .DAO
           .SQL
-            .Where('GUUID = ' + QuotedStr('{' + Req.Params['ID'] + '}' ))
+            .Where('id = ' + QuotedStr(Req.Params['id']))
           .&End
         .Find;
 
       Res.Send<TJsonArray>(iController.This.DataSetAsJsonArray);
     end)
 
-  .Post('/users',
+  .Post('/usuario',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       vBody : TJsonObject;
-      aGuuid: string;
+      id: string;
     begin
       vBody := TJSONObject.ParseJSONValue(Req.Body) as TJSONObject;
       try
-        if not vBody.TryGetValue<String>('guuid', aGuuid) then
-          vBody.AddPair('guuid', TGUID.NewGuid.ToString());
+        if not vBody.TryGetValue<String>('id', id) then
+          vBody.AddPair('id', TGUID.NewGuid.ToString());
         TController.New.Usuarios.This.Insert(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
@@ -75,16 +75,16 @@ begin
       end;
     end)
 
-  .Put('/users/:ID',
+  .Put('/usuario/:id',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       vBody : TJsonObject;
-      aGuuid: string;
+      id: string;
     begin
       vBody := TJSONObject.ParseJSONValue(Req.Body) as TJSONObject;
       try
-        if not vBody.TryGetValue<String>('guuid', aGuuid) then
-          vBody.AddPair('guuid', '{' + Req.Params['ID'] + '}' );
+        if not vBody.TryGetValue<String>('id', id) then
+          vBody.AddPair('id', '{' + Req.Params['ID'] + '}' );
         TController.New.Usuarios.This.Update(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
@@ -92,16 +92,16 @@ begin
       end;
     end)
 
-  .Delete('/users/:id',
+  .Delete('/usuario/:id',
   procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
   begin
-      try
-        TController.New.Usuarios.This.Delete('guuid', QuotedStr('{' + Req.Params['id'] + '}'));
-        Res.Status(200).Send('');
-      except
-        Res.Status(500).Send('');
-      end;
-    end);
+    try
+      TController.New.Usuarios.This.Delete('guuid', QuotedStr('{' + Req.Params['id'] + '}'));
+      Res.Status(200).Send('');
+    except
+      Res.Status(500).Send('');
+    end;
+  end);
 end;
 
 end.

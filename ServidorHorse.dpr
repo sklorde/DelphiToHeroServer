@@ -16,9 +16,11 @@ uses
   ServerHorse.Routers.Usuarios in 'src\Routers\ServerHorse.Routers.Usuarios.pas',
   System.Classes,
   ServerHorse.Utils in 'src\Utils\ServerHorse.Utils.pas',
-  ServerHorse.Model.Entity.ENDERECO in 'src\Model\Entity\ServerHorse.Model.Entity.ENDERECO.pas';
+  ServerHorse.Model.Entity.ENDERECO in 'src\Model\Entity\ServerHorse.Model.Entity.ENDERECO.pas',
+  ServerHorse.Routers.Endereco in 'src\Routers\ServerHorse.Routers.Endereco.pas';
 
 begin
   ServerHorse.Routers.Usuarios.Registry;
+  ServerHorse.Routers.Endereco.Registry;
   THorse.Listen(9000);
 end.
