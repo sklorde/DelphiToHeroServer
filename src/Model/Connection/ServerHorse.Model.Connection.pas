@@ -41,7 +41,7 @@ begin
     FConnList.Add(TFDConnection.Create(nil));
     IndexConn := Pred(FConnList.Count);
     FConnList.Items[IndexConn].Params.UserName := 'postgres';
-    FConnList.Items[IndexConn].Params.Password := 'info$g10112';
+    FConnList.Items[IndexConn].Params.Password := 'acesso';
     FConnList.Items[IndexConn].Params.Database := 'delphitohero';
     FConnList.Items[IndexConn].Params.DriverID := 'PG';
     FConnList.Items[IndexConn].Params.Add('Port=5432');

@@ -84,7 +84,7 @@ begin
       vBody := TJSONObject.ParseJSONValue(Req.Body) as TJSONObject;
       try
         if not vBody.TryGetValue<String>('id', id) then
-          vBody.AddPair('id', '{' + Req.Params['ID'] + '}' );
+          vBody.AddPair('id', '{' + Req.Params['id'] + '}' );
         TController.New.Usuarios.This.Update(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
@@ -96,7 +96,7 @@ begin
   procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
   begin
     try
-      TController.New.Usuarios.This.Delete('guuid', QuotedStr('{' + Req.Params['id'] + '}'));
+      TController.New.Usuarios.This.Delete('id', QuotedStr('{' + Req.Params['id'] + '}'));
       Res.Status(200).Send('');
     except
       Res.Status(500).Send('');
