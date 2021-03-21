@@ -5,19 +5,19 @@ interface
 uses
   ServerHorse.Controller.Generic,
   ServerHorse.Controller.Interfaces,
-  ServerHorse.Model.Entity.USUARIOS,
-  ServerHorse.Model.Entity.ENDERECO;
+  ServerHorse.Model.Entity.ENDERECO,
+  ServerHorse.Model.Entity.USUARIO;
 
 type
   TController = class(TInterfacedObject, iController)
     private
-      FUsuario  : iControllerEntity<TUSUARIOS>;
+      FUsuario  : iControllerEntity<TUsuario>;
       FEndereco : iControllerEntity<TEndereco>;
     public
       constructor Create;
       destructor Destroy; override;
       class function New : iController;
-      function Usuarios : iControllerEntity<TUsuarios>;
+      function Usuario : iControllerEntity<TUsuario>;
       function Endereco : iControllerEntity<TEndereco>;
   end;
 
@@ -49,10 +49,10 @@ begin
   Result := Self.Create;
 end;
 
-function TController.Usuarios: iControllerEntity<TUsuarios>;
+function TController.Usuario: iControllerEntity<TUsuario>;
 begin
   if not Assigned(FUsuario) then
-    FUsuario := TControllerGeneric<TUsuarios>.New(Self);
+    FUsuario := TControllerGeneric<TUsuario>.New(Self);
 
   Result := FUsuario;
 end;

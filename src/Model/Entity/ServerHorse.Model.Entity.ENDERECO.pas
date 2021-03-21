@@ -24,8 +24,6 @@ type
     destructor Destroy; override;
 
   published
-{verificar os atributos do campo de chave primária}
-{Exemplo: [Campo('NOME_CAMPO'), PK, AutoInc] }
     [Campo('ID'), PK, AutoInc]
     property ID: integer read FID write FID;
     [Campo('USUARIOID')]

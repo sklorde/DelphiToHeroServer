@@ -1,4 +1,4 @@
-unit ServerHorse.Routers.Usuarios;
+unit ServerHorse.Routers.Usuario;
 
 interface
 
@@ -16,7 +16,7 @@ implementation
 uses
   System.Classes,
   ServerHorse.Controller.Interfaces,
-  ServerHorse.Model.Entity.USUARIOS,
+  ServerHorse.Model.Entity.USUARIO,
   System.SysUtils,
   ServerHorse.Utils;
 
@@ -30,9 +30,9 @@ begin
   .Get('/usuario',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
-      iController : iControllerEntity<TUsuarios>;
+      iController : iControllerEntity<TUsuario>;
     begin
-      iController := TController.New.Usuarios;
+      iController := TController.New.Usuario;
       iController.This
         .DAO
           .SQL
@@ -45,9 +45,9 @@ begin
   .Get('/usuario/:id',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
-      iController : iControllerEntity<TUsuarios>;
+      iController : iControllerEntity<TUsuario>;
     begin
-      iController := TController.New.Usuarios;
+      iController := TController.New.Usuario;
       iController.This
         .DAO
           .SQL
@@ -68,7 +68,7 @@ begin
       try
         if not vBody.TryGetValue<String>('id', id) then
           vBody.AddPair('id', TGUID.NewGuid.ToString());
-        TController.New.Usuarios.This.Insert(vBody);
+        TController.New.USUARIO.This.Insert(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
         Res.Status(500).Send('');
@@ -85,7 +85,7 @@ begin
       try
         if not vBody.TryGetValue<String>('id', id) then
           vBody.AddPair('id', '{' + Req.Params['id'] + '}' );
-        TController.New.Usuarios.This.Update(vBody);
+        TController.New.Usuario.This.Update(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
         Res.Status(500).Send('');
@@ -96,7 +96,7 @@ begin
   procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
   begin
     try
-      TController.New.Usuarios.This.Delete('id', QuotedStr('{' + Req.Params['id'] + '}'));
+      TController.New.Usuario.This.Delete('id', QuotedStr('{' + Req.Params['id'] + '}'));
       Res.Status(200).Send('');
     except
       Res.Status(500).Send('');

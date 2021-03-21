@@ -1,4 +1,4 @@
-unit ServerHorse.Model.Entity.USUARIOS;
+unit ServerHorse.Model.Entity.USUARIO;
 
 interface
 
@@ -7,7 +7,7 @@ uses
 
 type
   [Tabela('USUARIO')]
-  TUSUARIOS = class
+  TUSUARIO = class
   private
     FID: integer;
     FNOME: string;   {TWideStringField}
@@ -38,23 +38,23 @@ type
 
 implementation
 
-constructor TUSUARIOS.Create;
+constructor TUSUARIO.Create;
 begin
 
 end;
 
-destructor TUSUARIOS.Destroy;
+destructor TUSUARIO.Destroy;
 begin
 
   inherited;
 end;
 
-function TUSUARIOS.ToJSONObject: TJsonObject;
+function TUSUARIO.ToJSONObject: TJsonObject;
 begin
   Result := TJson.ObjectToJsonObject(Self);
 end;
 
-function TUSUARIOS.ToJsonString: string;
+function TUSUARIO.ToJsonString: string;
 begin
   result := TJson.ObjectToJsonString(self);
 end;
