@@ -66,8 +66,6 @@ begin
     begin
       vBody := TJSONObject.ParseJSONValue(Req.Body) as TJSONObject;
       try
-        if not vBody.TryGetValue<String>('id', id) then
-          vBody.AddPair('id', TGUID.NewGuid.ToString());
         TController.New.USUARIO.This.Insert(vBody);
         Res.Status(200).Send<TJsonObject>(vBody);
       except
