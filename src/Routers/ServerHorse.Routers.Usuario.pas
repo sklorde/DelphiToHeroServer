@@ -94,7 +94,7 @@ begin
   procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
   begin
     try
-      TController.New.Usuario.This.Delete('id', QuotedStr('{' + Req.Params['id'] + '}'));
+      TController.New.Usuario.This.Delete('id', Req.Params['id']);
       Res.Status(200).Send('');
     except
       Res.Status(500).Send('');
