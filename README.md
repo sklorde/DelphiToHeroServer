@@ -6,6 +6,7 @@
 <h4 align="center">A REST API made with Horse by Delphi.</h4>
 
 <h5 align="center">No time for explanations.</h4>
+<h5 align="center">Maybe i'm going to use Docker to avoid explaining.</h4>
 
 ## How to Install
 
