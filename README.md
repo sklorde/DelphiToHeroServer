@@ -23,5 +23,5 @@ $ cd DelphiToHeroServer
 # Install dependencies
 $ boss install
 
-# Compile and run the .exe!
+# Compile and run
 ```
